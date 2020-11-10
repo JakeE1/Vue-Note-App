@@ -1,4 +1,4 @@
-# vue-cli
+# Vue JS Notes app
 
 ## Project setup
 ```
