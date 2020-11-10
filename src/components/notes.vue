@@ -1,10 +1,26 @@
+
+
 <template>
 <div class="notes">
     <div class="note" :class="{full: !grid}" v-for="(note, index) in notes" :key="index" :style="{border:`3px solid ${notes[index].type}`}">
         <div class="note-header">
-            <p>{{ note.title }}</p>
+            <p>{{ note.title }}
+                <input
+                v-if="note.edit"
+                v-model="note.title"
+                @blur="note.edit = false; $emit('update')"
+                @keyup.enter="note.edit=false; $emit('update')"
+                v-focus
+            ><div v-else>
+                <label @click="note.edit = true;"> {{note.title}} </label>
+            </div>
+            
+
+            </p>
             <p style="cursor: pointer;" @click="remove(index)">x</p>
         </div>
+
+        
         <div class="note-body">
             <p>{{ note.descr }}</p> 
             <span>{{ note.date }}</span> 
@@ -15,6 +31,7 @@
 
 <script>
 export default {
+
     props: {
         notes: {
             type: Array,
@@ -25,6 +42,12 @@ export default {
             required: true
         }
     },
+    data () {
+      return {
+    editedTodo: null,
+    message: 'Hello Vue.js!'
+  }
+  },
     /* data: {
         styleObject: {
                 border:`2px solid ${this.props.notes[index].type}`
@@ -50,8 +73,18 @@ export default {
         remove(index){
         this.$emit('remove', index);
         
-        }
+        },
+        editTodo(todo){
+        this.editedTodo = todo;
     }
+    },
+    directives: {
+    focus: {
+      inserted (el) {
+        el.focus()
+      }
+    }
+  }
 }
 </script>
 
@@ -121,3 +154,4 @@ export default {
 
 
 </style>
+
