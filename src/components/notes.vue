@@ -25,27 +25,6 @@ export default {
             required: true
         }
     },
-    /* data: {
-        styleObject: {
-                border:`2px solid ${this.props.notes[index].type}`
-        }
-    },
-    } */
-    /* computed:{
-        styleObject: function(index){
-            return {
-                border:`2px solid ${this.notes[index].type}`
-        }
-        }
-    }, */
-    /* data: {
-        classObject: {
-            /* full: !this.grid, 
-            white: notes[index].type == 0,
-            yellow: notes[index].type == 1,
-            red: notes[index].type == 2,
-        }
-    }*/
     methods: {
         remove(index){
         this.$emit('remove', index);
@@ -72,9 +51,6 @@ export default {
         transition: all .25s cubic-bezier(0.2, 0.085, 0.47, 1);
         &.full {
             width: 100%;
-        }
-        &.yellow {
-            background: chocolate;
         }
     }
 
