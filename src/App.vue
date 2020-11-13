@@ -76,7 +76,7 @@ export default {
        },
        notes: [
            {
-               title: 'First Note',
+               title: 'Change Me PLS',
                descr: 'Description for first note',
                type: '#f7f7f7',
                edit: false,
