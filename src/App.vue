@@ -43,14 +43,11 @@
         </div>
 
         <!-- note list -->
-
         <notes :notes="notesFilter" @remove="removeNote" :grid="grid" />
         
       </div>
     </section>
   </div>
-
-
 
 </div>
 </template>
