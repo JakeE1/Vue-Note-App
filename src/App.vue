@@ -74,6 +74,7 @@ export default {
        note: {
         title: '',
         descr: '',
+        edit: false,
         type: '#f7f7f7'
        },
        notes: [
@@ -81,18 +82,21 @@ export default {
                title: 'First Note',
                descr: 'Description for first note',
                type: '#f7f7f7',
+               edit: false,
                date: new Date(Date.now()).toLocaleString() 
            },
             {
                 title: 'Second Note',
                 descr: 'Description for first note',
                 type: '#f7f7f7',
+                edit: false,
                 date: new Date(Date.now()).toLocaleString() 
             },
             {
                 title: 'Third Note',
                 descr: 'Description for first note',
                 type: '#f7f7f7',
+                edit: false,
                 date: new Date(Date.now()).toLocaleString() 
             },
        ]

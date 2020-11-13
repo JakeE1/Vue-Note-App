@@ -2,15 +2,15 @@
     <div class="new-note">
         <label>Title</label>
         <div class="new-note header">
-            <input v-model="note.title" type="text">
+            <input v-model="note.title" type="text" >
             <div class="importance">
-                <div @click="setImportance('#f7f7f7')">
+                <div @click="setImportance('#f7f7f7')" data-importance="0">
                     common
                 </div>
-                <div @click="setImportance('yellow')">
+                <div @click="setImportance('yellow')" data-importance="1">
                     important
                 </div>
-                <div @click="setImportance('red')">
+                <div @click="setImportance('red')" data-importance="2">
                     most important
                 </div>
             </div>
@@ -46,12 +46,15 @@ export default {
         text-align: center;
         &.header {
             display: flex;
+            /* align-items: center; */
             justify-content: space-between;
         }
     }
     .importance{
         display: flex;
         justify-content: space-between;
+        cursor: pointer;
+        
         div{
             margin: 0 10px;
             padding: 10px;

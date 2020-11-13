@@ -1,10 +1,26 @@
+
+
 <template>
 <div class="notes">
     <div class="note" :class="{full: !grid}" v-for="(note, index) in notes" :key="index" :style="{border:`3px solid ${notes[index].type}`}">
         <div class="note-header">
-            <p>{{ note.title }}</p>
+            <div>
+                <input
+                v-if="note.edit"
+                v-model="note.title"
+                @blur="note.edit = false; $emit('update')"
+                @keyup.enter="note.edit=false; $emit('update')"
+                v-focus>
+            <div v-else>
+                <label @click="note.edit = true;"> {{note.title}} </label>
+            </div>
+            </div>
+
+            
             <p style="cursor: pointer;" @click="remove(index)">x</p>
         </div>
+
+        
         <div class="note-body">
             <p>{{ note.descr }}</p> 
             <span>{{ note.date }}</span> 
@@ -15,6 +31,7 @@
 
 <script>
 export default {
+
     props: {
         notes: {
             type: Array,
@@ -25,12 +42,49 @@ export default {
             required: true
         }
     },
+    data () {
+      return {
+    editedTodo: null,
+    message: 'Hello Vue.js!'
+  }
+  },
+    /* data: {
+        styleObject: {
+                border:`2px solid ${this.props.notes[index].type}`
+        }
+    },
+    } */
+    /* computed:{
+        styleObject: function(index){
+            return {
+                border:`2px solid ${this.notes[index].type}`
+        }
+        }
+    }, */
+    /* data: {
+        classObject: {
+            /* full: !this.grid, 
+            white: notes[index].type == 0,
+            yellow: notes[index].type == 1,
+            red: notes[index].type == 2,
+        }
+    }*/
     methods: {
         remove(index){
         this.$emit('remove', index);
         
-        }
+        },
+        editTodo(todo){
+        this.editedTodo = todo;
     }
+    },
+    directives: {
+    focus: {
+      inserted (el) {
+        el.focus()
+      }
+    }
+  }
 }
 </script>
 
@@ -51,6 +105,9 @@ export default {
         transition: all .25s cubic-bezier(0.2, 0.085, 0.47, 1);
         &.full {
             width: 100%;
+        }
+        &.yellow {
+            background: chocolate;
         }
     }
 
@@ -97,3 +154,4 @@ export default {
 
 
 </style>
+
